@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusCart - Online Shopping Site</title>
+    <link rel="shortcut icon" class="fab fa-atom">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="content-container">
+            <div class="top-bar">
+                <div class="logo" onclick="showPage('home')">
+                    <i class="fas fa-atom"></i>
+                    <h1>NexusCart</h1>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for products, brands and more" onkeyup="searchProducts()">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#" onclick="showPage('categories')"><i class="fas fa-home"></i> Categories</a>
+                    <a href="#" onclick="showPage('wishlist')"><i class="fas fa-heart"></i> Wishlist <span class="wishlist-count">0</span></a>
+                    <a href="#" onclick="showPage('account')"><i class="fas fa-user"></i> About Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h2>NexusCart</h2>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#" onclick="showPage('home'); toggleMobileMenu();"><i class="fas fa-home"></i> Home</a>
+            <a href="#" onclick="showPage('wishlist'); toggleMobileMenu();"><i class="fas fa-heart"></i> Wishlist</a>
+            <a href="#" onclick="showPage('account'); toggleMobileMenu();"><i class="fas fa-user"></i> Account</a>
+            <a href="#" onclick="showPage('categories'); toggleMobileMenu();"><i class="fas fa-list"></i> Categories</a>
+            <a href="#" onclick="showPage('deals'); toggleMobileMenu();"><i class="fas fa-tag"></i> Hot Deals</a>
+            <a href="#" onclick="showPage('trending'); toggleMobileMenu();"><i class="fas fa-fire"></i> Trending</a>
+        </div>
+    </div>
+    
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="content-container">
+            <div class="hero">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="hero-content">
+                            <h2>Summer Sale is Live!</h2>
+                            <p>Get up to 60% off on top brands with our exclusive summer collection. Limited time offer!</p>
+                            <button class="hero-btn btn-futuristic" onclick="showCategoryPage('deals')">Shop Now <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="hero-content">
+                            <h2>New Arrivals</h2>
+                            <p>Discover the latest tech gadgets and innovative products just for you</p>
+                            <button class="hero-btn btn-futuristic" onclick="showCategoryPage('electronics')">Explore <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="hero-content">
+                            <h2>Mobile Mania</h2>
+                            <p>Flagship smartphones at best prices with exclusive offers and discounts</p>
+                            <button class="hero-btn btn-futuristic" onclick="showCategoryPage('mobiles')">View Mobiles <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+            
+            <div class="container">
+                <div class="section-title">
+                    <h2>Top Deals on Electronics</h2>
+                    <a href="#" class="view-all" onclick="showCategoryPage('electronics')">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="products-grid" id="electronics">
+                    <!-- Products will be added here by JavaScript -->
+                </div>
+                
+                <div class="section-title">
+                    <h2>Best Selling Smartphones</h2>
+                    <a href="#" class="view-all" onclick="showCategoryPage('mobiles')">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="products-grid" id="mobiles">
+                    <!-- Products will be added here by JavaScript -->
+                </div>
+                
+                <div class="section-title">
+                    <h2>Sports, Healthcare & more</h2>
+                    <a href="#" class="view-all" onclick="showCategoryPage('trending')">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="products-grid" id="trending">
+                    <!-- Products will be added here by JavaScript -->
+                </div>
+
+                <div class="section-title">
+                    <h2>Fashion & Beauty Deals</h2>
+                    <a href="#" class="view-all" onclick="showCategoryPage('fashion')">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="products-grid" id="fashion">
+                    <!-- Products will be added here by JavaScript -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Detail Page -->
+    <div id="product-detail" class="page">
+        <div class="content-container">
+            <div class="container">
+                <a href="#" onclick="showPage('home')" style="display: inline-flex; align-items: center; gap: 5px; margin-bottom: 20px; color: var(--primary); text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+                <div class="product-detail" id="productDetailContent">
+                    <!-- Product detail will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Wishlist Page -->
+    <div id="wishlist" class="page">
+        <div class="content-container">
+            <div class="container">
+                <h1 class="page-title">Your Wishlist</h1>
+                <div id="wishlistItems" class="products-grid">
+                    <!-- Wishlist items will be added here by JavaScript -->
+                </div>
+                <div id="wishlistEmpty" class="empty-state" style="margin-top: -50px; margin-bottom: 40px;">
+                    <i class="fas fa-heart"></i>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Start adding items to your wishlist by clicking the heart icon on products</p>
+                    <a href="#" class="btn btn-futuristic" onclick="showPage('home')">Browse Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Page -->
+    <div id="account" class="page">
+        <div class="content-container">
+            <div class="container">
+                <h1 class="page-title">About Us</h1>
+                <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); margin-bottom: 30px;">
+                            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center;">
+                                    <img src="Shahid 06.jpg" style="width: 80px; border-radius: 50%;">
+                                </div>
+                                <div>
+                                    <h3 style="font-size: 20px; margin-bottom: 5px;">SHAHID 06</h3>
+                                    <p style="color: var(--text-light);">@SHAHID06TECH</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 120px; background: rgba(110, 0, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold; color: red;"><i class="fab fa-youtube"></i></div>
+                                    <div style="font-size: 14px; color: var(--text-light); font-weight: bold;">Subscribe</div>
+                                </div>
+                                <div style="flex: 1; min-width: 120px; background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 10px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--accent);"><i class="fab fa-instagram"></i></div>
+                                    <div style="font-size: 14px; color: var(--text-light); font-weight: bold;">Follow</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow);">
+                            <h3 style="font-size: 18px; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                                Connect With Us
+                                <span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(to right, var(--primary), var(--accent)); border-radius: 3px;"></span>
+                            </h3>
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <a href="#" style="display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 8px; background: rgba(110, 0, 255, 0.05); text-decoration: none; color: var(--text); transition: var(--transition);">
+                                    <i class="fab fa-youtube" style="color: red;"></i>
+                                    <span>YouTube | SHAHID 06 TECH</span>
+                                    <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--text-light);"></i>
+                                </a>
+                                <a href="#" style="display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 8px; background: rgba(110, 0, 255, 0.05); text-decoration: none; color: var(--text); transition: var(--transition);">
+                                    <i class="fab fa-instagram" style="color: var(--accent);"></i>
+                                    <span>Instagram | SHAHID 06 TECH</span>
+                                    <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--text-light);"></i>
+                                </a>
+                                <a href="#" style="display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 8px; background: rgba(110, 0, 255, 0.05); text-decoration: none; color: var(--text); transition: var(--transition);">
+                                    <i class="fab fa-telegram" style="color: rgb(0, 183, 255);"></i>
+                                    <span>Telegram | SHAHID 06 TECH</span>
+                                    <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--text-light);"></i>
+                                </a>
+                                <a href="#" style="display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 8px; background: rgba(110, 0, 255, 0.05); text-decoration: none; color: var(--text); transition: var(--transition);">
+                                    <i class="fab fa-facebook" style="color: blue;"></i>
+                                    <span>Facebook | SHAHID 06 TECH</span>
+                                    <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--text-light);"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 2; min-width: 300px;">
+                        <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); margin-bottom: 30px;">
+                            <h3 style="font-size: 18px; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                                We Offers
+                                <span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(to right, var(--primary), var(--accent)); border-radius: 3px;"></span>
+                            </h3>
+                            <div style="display: flex; flex-direction: column; gap: 20px;">
+                                <div style="display: flex; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid rgba(0, 0, 0, 0.05);">
+                                    <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(110, 0, 255, 0.1); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-tag" style="color: var(--accent);"></i>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 500; margin-bottom: 5px;">Upto 50% Discount</div>
+                                        <div style="font-size: 14px; color: var(--text-light);">Special discount on your purchase</div>
+                                        <div style="font-size: 12px; color: var(--text-light); margin-top: 5px;">End in 2 hours</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid rgba(0, 0, 0, 0.05);">
+                                    <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 255, 136, 0.1); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-car" style="color: var(--accent);"></i>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 500; margin-bottom: 5px;">Free Delivery</div>
+                                        <div style="font-size: 14px; color: var(--text-light);">Get Free & Faster Delivery</div>
+                                        <div style="font-size: 12px; color: var(--text-light); margin-top: 5px;">1 day Delivery</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 15px;">
+                                    <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 45, 117, 0.1); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-search" style="color: var(--accent);"></i>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 500; margin-bottom: 5px;">Original Products</div>
+                                        <div style="font-size: 14px; color: var(--text-light);">Get top reviewed products</div>
+                                        <div class="mobile-menu-header" style="font-size: 12px; margin-top: 5px;"><h2 style="font-size: 12px;">NexusCart Assured</h2></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow);">
+                            <h3 style="font-size: 18px; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                                Recommended For You
+                                <span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(to right, var(--primary), var(--accent)); border-radius: 3px;"></span>
+                            </h3>
+                            <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                                <!-- Recommended products will be added here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Page -->
+    <div id="category" class="page">
+        <div class="category-header" id="categoryHeader">
+            <div class="content-container">
+                <h1 id="categoryTitle">Category</h1>
+                <p id="categoryDescription">Browse our wide selection of products in this category</p>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="category-products" id="categoryProducts">
+                <!-- Category products will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- All Categories Page -->
+    <div id="categories" class="page">
+        <div class="content-container">
+            <div class="container">
+                <h1 class="page-title">All Categories</h1>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px;">
+                    <div class="category-card" onclick="showCategoryPage('electronics')" style="background: linear-gradient(135deg, #6e00ff, #9d4dff); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-laptop"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Electronics</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Laptops, TVs, Headphones & more</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryPage('mobiles')" style="background: linear-gradient(135deg, #00ff88, #00c853); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Mobiles</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Smartphones, Tablets & Accessories</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryPage('fashion')" style="background: linear-gradient(135deg, #ff2d75, #ff1744); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-tshirt"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Fashion</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Clothing, Shoes & Accessories</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryPage('home')" style="background: linear-gradient(135deg, #ff9f00, #ffab00); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-home"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Home & Kitchen</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Appliances, Furniture & more</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryPage('beauty')" style="background: linear-gradient(135deg, #ff4081, #e91e63); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-spa"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Beauty</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Skincare, Makeup & Fragrances</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryPage('toys')" style="background: linear-gradient(135deg, #00bcd4, #0097a7); color: white; padding: 30px; border-radius: 15px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow);">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-gamepad"></i></div>
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Toys & Games</h3>
+                        <p style="opacity: 0.9; font-size: 14px;">Fun for all ages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Deals Page -->
+    <div id="deals" class="page">
+        <div class="category-header" style="background: linear-gradient(135deg, #e53935, #ff5252);">
+            <div class="content-container">
+                <h1>Hot Deals</h1>
+                <p>Limited time offers and exclusive discounts</p>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Today's Best Deals</h2>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(229, 57, 53, 0.1); padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-clock" style="color: #e53935;"></i>
+                        <span id="dealTimer" style="font-weight: 500; color: #e53935;">23:59:59</span>
+                    </div>
+                </div>
+                <div class="products-grid" id="dealsProducts">
+                    <!-- Deals products will be loaded here -->
+                </div>
+                
+                <div class="section-title">
+                    <h2>Flash Sale</h2>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(229, 57, 53, 0.1); padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-bolt" style="color: #e53935;"></i>
+                        <span style="font-weight: 500; color: #e53935;">Ending Soon</span>
+                    </div>
+                </div>
+                <div class="products-grid" id="flashSaleProducts">
+                    <!-- Flash sale products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Trending Page -->
+    <div id="trending" class="page">
+        <div class="category-header" style="background: linear-gradient(135deg, #ff6d00, #ff9100);">
+            <div class="content-container">
+                <h1>Trending Now</h1>
+                <p>Products everyone is talking about</p>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Most Popular This Week</h2>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 109, 0, 0.1); padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-fire" style="color: #ff6d00;"></i>
+                        <span style="font-weight: 500; color: #ff6d00;">Hot Picks</span>
+                    </div>
+                </div>
+                <div class="products-grid" id="trendingProducts">
+                    <!-- Trending products will be loaded here -->
+                </div>
+                
+                <div class="section-title">
+                    <h2>New Releases</h2>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 109, 0, 0.1); padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-star" style="color: #ff6d00;"></i>
+                        <span style="font-weight: 500; color: #ff6d00;">Just Launched</span>
+                    </div>
+                </div>
+                <div class="products-grid" id="newReleasesProducts">
+                    <!-- New releases products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="content-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('categories')">All Categories</a></li>
+                        <li><a href="#" onclick="showPage('deals')">Deals</a></li>
+                        <li><a href="#" onclick="showPage('trending')">Trending</a></li>
+                        <li><a href="#" onclick="showPage('new')">New Arrivals</a></li>
+                        <li><a href="#" onclick="showPage('brands')">Brands</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column footer-social">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest products, deals and news</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2023 NexusCart. All Rights Reserved.</p>
+                </div>
+                <div class="payment-methods">
+                    <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/payment-method_69e7ec.svg" alt="Visa">
+                </div>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>
