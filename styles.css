@@ -26,6 +26,10 @@
     font-family: 'Montserrat', Arial, sans-serif;
 }
 
+html, body {
+    overflow-x: hidden;
+  }  
+
 body {
     background-color: var(--background);
     color: var(--text);
